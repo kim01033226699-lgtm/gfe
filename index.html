@@ -53,6 +53,7 @@
       line-height: 1.6;
       background-color: var(--bg-white);
       overflow-x: hidden;
+      padding-bottom: 100px; /* 플로팅 버튼 높이만큼 하단 패딩 추가 */
     }
 
     /* ==================== Typography ==================== */
@@ -218,10 +219,18 @@
     /* ==================== Floating Button ==================== */
     .floating-benefit-btn {
       position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 999;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 99999;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      height: 80px;
     }
 
     .floating-btn {
@@ -229,7 +238,7 @@
       color: white;
       border: none;
       border-radius: 50px;
-      padding: 1rem 1.5rem;
+      padding: 1rem 2rem;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
@@ -237,8 +246,11 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      box-shadow: 0 8px 24px rgba(255, 156, 0, 0.3);
+      box-shadow: 0 4px 16px rgba(255, 156, 0, 0.3);
       white-space: nowrap;
+      max-width: 400px;
+      width: 100%;
+      justify-content: center;
     }
 
     .floating-btn:hover {
@@ -258,17 +270,13 @@
     /* 모바일 반응형 */
     @media (max-width: 768px) {
       .floating-benefit-btn {
-        bottom: 1rem;
-        left: 1rem;
-        right: 1rem;
-        transform: none;
+        padding: 0.75rem;
       }
 
       .floating-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 0.875rem 1.25rem;
+        padding: 0.875rem 1.5rem;
         font-size: 0.95rem;
+        max-width: none;
       }
     }
 
@@ -1071,8 +1079,11 @@
     .footer {
       background: var(--text-dark);
       color: white;
-      padding: 2rem 0;
+      padding: 2rem 0 100px 0; /* 하단 패딩을 100px로 증가 */
       text-align: center;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 0;
     }
 
     .footer p {
@@ -1264,24 +1275,24 @@
                 <p class="slider-card-description">1-12차월까지 지원금 및 DB 지원</p>
               </div>
             </div>
-          </div>
-        </div>
+              </div>
+            </div>
 
                <!-- Slider Navigation Dots -->
                <div class="slider-dots">
                  <button class="slider-dot active" data-index="0"></button>
                  <button class="slider-dot" data-index="1"></button>
                  <button class="slider-dot" data-index="2"></button>
-               </div>
+              </div>
                
                <!-- Slider Navigation Arrows -->
                <div class="slider-nav">
                  <button class="slider-arrow slider-arrow-prev" onclick="prevSlide()">‹</button>
                  <button class="slider-arrow slider-arrow-next" onclick="nextSlide()">›</button>
-               </div>
-      </div>
-      
-    </div>
+              </div>
+            </div>
+
+              </div>
   </section>
 
 
@@ -1291,7 +1302,7 @@
       <div class="modal-header">
         <h2>내게 맞는 과정 알아보기</h2>
         <button class="modal-close" onclick="closeBenefitModal()">&times;</button>
-      </div>
+              </div>
       <div class="modal-body">
         <div id="benefitStep1" class="benefit-step active">
           <h3>1. 연령 확인</h3>
@@ -1299,7 +1310,7 @@
           <div class="benefit-buttons">
             <button class="btn btn-primary" onclick="nextStep(2)">네</button>
             <button class="btn btn-outline" onclick="nextStep('1b')">아니오</button>
-          </div>
+            </div>
         </div>
 
         <div id="benefitStep1b" class="benefit-step">
@@ -1317,8 +1328,8 @@
           <div class="benefit-buttons">
             <button class="btn btn-primary" onclick="showBasicCourse()">네</button>
             <button class="btn btn-outline" onclick="showResult('experience')">아니오</button>
-          </div>
         </div>
+      </div>
 
         <div id="benefitStep2" class="benefit-step">
           <h3>2. 보험 영업 경력 확인</h3>
@@ -1326,7 +1337,7 @@
           <div class="benefit-buttons">
             <button class="btn btn-primary" onclick="nextStep(3)">네</button>
             <button class="btn btn-outline" onclick="showExperienceQuestion()">아니오</button>
-          </div>
+    </div>
         </div>
 
         <div id="benefitStep2b" class="benefit-step">
@@ -1336,7 +1347,7 @@
             <button class="btn btn-primary" onclick="nextStep(3)">네</button>
             <button class="btn btn-outline" onclick="showResult('experience')">아니오</button>
           </div>
-        </div>
+      </div>
 
         <div id="benefitStep3" class="benefit-step">
           <h3>3. 학력 확인</h3>
@@ -1367,17 +1378,17 @@
             <div class="option-card" onclick="selectOption(2)">
               <h4>옵션 2 (디비미지급형)</h4>
               <p>지원내용 상세 정보</p>
-            </div>
           </div>
         </div>
+      </div>
 
         <div id="benefitResult" class="benefit-step">
           <h3>결과</h3>
           <div id="resultContent"></div>
           <div class="benefit-buttons">
             <button class="btn btn-primary" onclick="resetBenefitModal()">다시해보기</button>
-          </div>
-        </div>
+      </div>
+    </div>
 
         <div id="benefitBasicCourse" class="benefit-step">
           <h3>금융캠퍼스 베이직 과정</h3>
@@ -1869,3 +1880,4 @@
 
 </body>
 </html>
+
